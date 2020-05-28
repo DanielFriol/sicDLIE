@@ -1,0 +1,100 @@
+<template>
+    <require from="./personAdd.css"></require>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Edit Person</h5>
+            <div class="position-absolute" style="right:10px; top: 10px">
+                <a href="#persons" class="btn btn-sm btn-secondary ml-2">
+                    Go Back
+                </a>
+            </div>
+            <br>
+            <form #form>
+                <div class="row">
+                    <div class="col-1">
+                        <label for="name">Name:</label>
+                    </div>
+                    <div class="col-3">
+                        <input class="form-control" type="text" value.bind="personBind.name & validateOnChange"
+                            name="name" minlength="5" maxlength="50" required>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-1">
+                        <label for="familyName">Family Name:</label>
+                    </div>
+                    <div class="col-3">
+                        <input class="form-control" type="text" value.bind="personBind.familyName & validateOnChange"
+                            name="familyName" minlength="5" maxlength="50" required>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-1">
+                        <label for="address">Address:</label>
+                    </div>
+                    <div class="col-3">
+                        <input class="form-control" type="text" value.bind="personBind.address & validateOnChange"
+                            name="address" minlength="10" maxlength="200" required>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-1">
+                        <label for="country">Country:</label>
+                    </div>
+                    <div class="col-3">
+                        <input class="form-control" value.bind="personBind.countryOfOrigin & validateOnChange"
+                            type="text" name="country" required>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-1">
+                        <label for="email">Email:</label>
+                    </div>
+                    <div class="col-3">
+                        <input class="form-control" type="email" value.bind="personBind.emailAdress & validateOnChange"
+                            name="email" required>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-1">
+                        <label for="age">Age:</label>
+                    </div>
+                    <div class="col-3">
+                        <input class="form-control" type="number" value.bind="personBind.age & validateOnChange"
+                            name="age" min="20" max="60" required>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-1">
+                        <label for="hired">Hired:</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="optradio" class="mr-1"
+                                value.bind="personBind.hired & validateOnChange" model.bind="true"
+                                checked.bind="personBind.hired" value=true>Yes</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="optradio" class="mr-1 ml-2"
+                                value.bind="personBind.hired & validateOnChange" model.bind="false"
+                                checked.bind="personBind.hired" value=false>No</label>
+                    </div>
+                </div>
+                <br>
+                <ul if.bind="controller.errors.length > 0">
+                    <li repeat.for="error of controller.errors">${error}</li>
+                </ul>
+                <br>
+                <button class="btn btn-sm btn-success ml-2" disabled.bind="controller.errors.length > 0"
+                    click.trigger="submitPerson()">Submit</button>
+                <button class="btn btn-sm btn-success ml-2" disabled.bind="changed"
+                    click.delegate="reset()">Reset</button>
+            </form>
+        </div>
+    </div>
+</template>

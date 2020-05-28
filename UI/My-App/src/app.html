@@ -1,0 +1,13 @@
+<template>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Hahn Application</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li repeat.for="row of router.navigation" class="nav-item active" style="margin-left:10px;">
+          <a style="text-decoration: none; color: #000;" href.bind="row.href">${row.title}</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <router-view></router-view>
+</template>
